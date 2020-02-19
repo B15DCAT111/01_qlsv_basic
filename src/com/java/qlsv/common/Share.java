@@ -8,27 +8,25 @@ import java.util.Scanner;
 
 public class Share {
     public static String menu() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("           ,-----.    ,--.     ,---.   ,--.   ,--.  \n");
-        stringBuilder.append("          '  .-.  '   |  |    '   .-'   \\  `.'  /   \n");
-        stringBuilder.append("          |  | |  |   |  |    `.  `-.    \\     /   \n");
-        stringBuilder.append("          '  '-'  '-. |  '--. .-'    |    \\   /    \n");
-        stringBuilder.append("           `-----'--' `-----' `-----'      `-'     \n");
 
-        stringBuilder.append("=========================== MENU =========================== \n");
-        stringBuilder.append("| 1. Hiển thị danh sách sinh viên                          | \n");
-        stringBuilder.append("| 2. Thêm sinh viên                                        | \n");
-        stringBuilder.append("| 3. Sủa sinh viên theo mã sinh viên                       | \n");
-        stringBuilder.append("| 4. Xóa sinh viên theo mã sinh viên                       | \n");
-        stringBuilder.append("| 5. Tìm kiếm sinh viên theo lựa chọn                      | \n");
-        stringBuilder.append("| \t5.1 : mã sinh viên                                     | \n");
-        stringBuilder.append("| \t5.2 : tên sinh viên                                    | \n");
-        stringBuilder.append("| \t5.3 : điểm sinh viên                                   | \n");
-        stringBuilder.append("| 6. Sắp xếp sinh viên theo điểm                           | \n");
-        stringBuilder.append("| \t6.1 : tăng dần                                         | \n");
-        stringBuilder.append("| \t6.2 : giảm dần                                         | \n");
-        stringBuilder.append("============================================================ \n");
-        return stringBuilder.toString();
+        return "           ,-----.    ,--.     ,---.   ,--.   ,--.  \n" +
+                "          '  .-.  '   |  |    '   .-'   \\  `.'  /   \n" +
+                "          |  | |  |   |  |    `.  `-.    \\     /   \n" +
+                "          '  '-'  '-. |  '--. .-'    |    \\   /    \n" +
+                "           `-----'--' `-----' `-----'      `-'     \n" +
+                "=========================== MENU =========================== \n" +
+                "| 1. Hiển thị danh sách sinh viên                          | \n" +
+                "| 2. Thêm sinh viên                                        | \n" +
+                "| 3. Sủa sinh viên theo mã sinh viên                       | \n" +
+                "| 4. Xóa sinh viên theo mã sinh viên                       | \n" +
+                "| 5. Tìm kiếm sinh viên theo lựa chọn                      | \n" +
+                "| \t5.1 : mã sinh viên                                     | \n" +
+                "| \t5.2 : tên sinh viên                                    | \n" +
+                "| \t5.3 : điểm sinh viên                                   | \n" +
+                "| 6. Sắp xếp sinh viên theo điểm                           | \n" +
+                "| \t6.1 : tăng dần                                         | \n" +
+                "| \t6.2 : giảm dần                                         | \n" +
+                "============================================================ \n";
     }
 
     /**
@@ -37,7 +35,7 @@ public class Share {
      * @return
      */
     public static Long autoIncreaseId() {
-        return Long.valueOf(DataStudent.studentCollection.size() + 1);
+        return (long) (DataStudent.studentCollection.size() + 1);
     }
 
     public static Student inputInfoStudent() {
@@ -52,10 +50,14 @@ public class Share {
         String email = scanner.nextLine();
         System.out.println("Nhap điểm sinh viên : ");
         Double mark = Double.parseDouble(scanner.nextLine());
-        Student std = new Student(autoIncreaseId(), code, name, address, email, mark);
-        return std;
+        return new Student(autoIncreaseId(), code, name, address, email, mark);
     }
 
+    /**
+     * Hien thi danh sach sinh vien
+     *
+     * @param listStd
+     */
     public static void displayListStudent(List<Student> listStd) {
         System.out.println("===================================================================================================================== DSSV ===========================================================================================");
         System.out.println("======================================================================================================================================================================================================================");
@@ -65,5 +67,34 @@ public class Share {
             System.out.println("|   " + std.get_id() + "     |             " + std.getCode() + "               |             " + std.getName() + "               |                " + std.getAddress() + "               |              " + std.getEmail() + "               |              " + std.getMark() + "               |");
         });
         System.out.println("======================================================================================================================================================================================================================");
+    }
+
+    /**
+     * Hien thi 1 sinh vien
+     *
+     * @param std
+     */
+    public static void displayStudent(Student std) {
+        System.out.println("===================================================================================================================== DSSV ===========================================================================================");
+        System.out.println("======================================================================================================================================================================================================================");
+        System.out.println("|   _id   |               CODE                   |                     NAME                  |               ADDRESS               |                       EMAIL                      |             MARK               | ");
+        System.out.println("======================================================================================================================================================================================================================");
+        System.out.println("|   " + std.get_id() + "     |             " + std.getCode() + "               |             " + std.getName() + "               |                " + std.getAddress() + "               |              " + std.getEmail() + "               |              " + std.getMark() + "               |");
+        System.out.println("======================================================================================================================================================================================================================");
+    }
+
+    public static String inputCode() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    public static String inputName() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    public static Double inputMark() {
+        Scanner scanner = new Scanner(System.in);
+        return Double.parseDouble(scanner.nextLine());
     }
 }
