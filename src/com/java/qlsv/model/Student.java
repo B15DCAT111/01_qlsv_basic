@@ -1,5 +1,8 @@
 package com.java.qlsv.model;
 
+/**
+ * Đối tượng sinh viên cần quản lý
+ */
 public class Student {
     private Long _id;
 

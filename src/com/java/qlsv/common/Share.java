@@ -14,6 +14,7 @@ public class Share {
                 "          |  | |  |   |  |    `.  `-.    \\     /   \n" +
                 "          '  '-'  '-. |  '--. .-'    |    \\   /    \n" +
                 "           `-----'--' `-----' `-----'      `-'     \n" +
+                "@author : T.B.L - facebook: https://www.facebook.com/Talonjr.7 \n" +
                 "=========================== MENU =========================== \n" +
                 "| 1. Hiển thị danh sách sinh viên                          | \n" +
                 "| 2. Thêm sinh viên                                        | \n" +
@@ -53,20 +54,37 @@ public class Share {
         return new Student(autoIncreaseId(), code, name, address, email, mark);
     }
 
+    public static Student inputInfoStudentForUpdate(Long id) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhap mã sinh vien : ");
+        String code = scanner.nextLine();
+        System.out.println("Nhap tên sinh vien : ");
+        String name = scanner.nextLine();
+        System.out.println("Nhập địa chỉ sinh viên :");
+        String address = scanner.nextLine();
+        System.out.println("Nhập Email Sinh viên : ");
+        String email = scanner.nextLine();
+        System.out.println("Nhap điểm sinh viên : ");
+        Double mark = Double.parseDouble(scanner.nextLine());
+        return new Student(id, code, name, address, email, mark);
+    }
+
     /**
      * Hien thi danh sach sinh vien
      *
      * @param listStd
      */
     public static void displayListStudent(List<Student> listStd) {
-        System.out.println("===================================================================================================================== DSSV ===========================================================================================");
-        System.out.println("======================================================================================================================================================================================================================");
-        System.out.println("|   _id   |               CODE                   |                     NAME                  |               ADDRESS               |                       EMAIL                      |             MARK               | ");
-        listStd.forEach((Student std) -> {
-            System.out.println("======================================================================================================================================================================================================================");
-            System.out.println("|   " + std.get_id() + "     |             " + std.getCode() + "               |             " + std.getName() + "               |                " + std.getAddress() + "               |              " + std.getEmail() + "               |              " + std.getMark() + "               |");
-        });
-        System.out.println("======================================================================================================================================================================================================================");
+        if (null != listStd && listStd.size() > 0) {
+            listStd.forEach((Student std) -> {
+                System.out.println(std.get_id() + "." + std.getCode() + " - " + std.getName() + " - " + std.getAddress() + " - " + std.getEmail() + " - " + std.getMark());
+            });
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
+        } else {
+            System.out.println("Danh sach sinh viên trống !");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+
     }
 
     /**
@@ -75,12 +93,15 @@ public class Share {
      * @param std
      */
     public static void displayStudent(Student std) {
-        System.out.println("===================================================================================================================== DSSV ===========================================================================================");
-        System.out.println("======================================================================================================================================================================================================================");
-        System.out.println("|   _id   |               CODE                   |                     NAME                  |               ADDRESS               |                       EMAIL                      |             MARK               | ");
-        System.out.println("======================================================================================================================================================================================================================");
-        System.out.println("|   " + std.get_id() + "     |             " + std.getCode() + "               |             " + std.getName() + "               |                " + std.getAddress() + "               |              " + std.getEmail() + "               |              " + std.getMark() + "               |");
-        System.out.println("======================================================================================================================================================================================================================");
+        System.out.println("--- Ket qua tim kiem ---");
+        if (null != std && null != std.get_id()) {
+            System.out.println(std.get_id() + "." + std.getCode() + " - " + std.getName() + " - " + std.getAddress() + " - " + std.getEmail() + " - " + std.getMark());
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
+        } else {
+            System.out.println("Không có sinh viên nào thỏa mãn điều kiện tìm kiếm !");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+
     }
 
     public static String inputCode() {

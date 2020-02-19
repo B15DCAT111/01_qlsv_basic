@@ -52,7 +52,7 @@ public class StudentBussiness {
     public List<Student> findStudentByName(String name) {
         List<Student> listResult = new ArrayList<>();
         for (Student std : DataStudent.studentCollection) {
-            if (name.equals(std.getCode())) {
+            if (name.equals(std.getName())) {
                 listResult.add(std);
             }
         }
@@ -72,8 +72,18 @@ public class StudentBussiness {
         return listResult;
     }
 
+    public void updateStudentByCode(String code, Student std) {
+        for (int i = 0; i < DataStudent.studentCollection.size(); i++) {
+            if (code.equals(DataStudent.studentCollection.get(i).getCode())) {
+                DataStudent.studentCollection.remove(DataStudent.studentCollection.get(i));
+                DataStudent.studentCollection.add(i, std);
+                break;
+            }
+        }
+    }
+
     public List<Student> sortByMark(String orderBy) {
-        List<Student> listResult = new ArrayList<>();
+        List<Student> listResult;
         switch (orderBy) {
             case "ASC":
                 DataStudent.studentCollection.sort(new MarkComparatorOrderByASC());

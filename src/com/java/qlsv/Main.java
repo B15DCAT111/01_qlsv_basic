@@ -18,6 +18,7 @@ public class Main {
         // show menu
         System.out.println(Share.menu());
         while (true) {
+            System.out.println("--- Chon chức năng bạn muốn ---");
             choose = scanner.nextLine();
             switch (choose) {
                 case "1":
@@ -38,6 +39,20 @@ public class Main {
                     break;
                 case "3":
                     System.out.println("3. Sủa sinh viên theo mã sinh viên");
+                    try {
+                        System.out.println("Nhap ma sinh vien ban muon sua");
+                        String code = Share.inputCode();
+                        Student std = studentBussiness.findStudentByCode(code);
+                        Share.displayStudent(std);
+                        System.out.println("Nhập thông tin cần sửa: ");
+                        Student stde = Share.inputInfoStudentForUpdate(std.get_id());
+                        studentBussiness.updateStudentByCode(code, stde);
+                        System.out.println("Sua thanh cong !!");
+                        Share.displayListStudent(studentBussiness.getListStudent());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("Tim kiem theo ma khong thanh cong !!");
+                    }
                     break;
                 case "4":
                     System.out.println("4. Xóa sinh viên theo mã sinh viên");
@@ -156,6 +171,12 @@ public class Main {
             }
             if (exit) {
                 break;
+            }
+            try {
+                //assuming it takes 20 secs to complete the task
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             // show menu
             System.out.println(Share.menu());
