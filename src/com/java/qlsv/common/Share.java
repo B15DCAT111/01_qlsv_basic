@@ -3,6 +3,7 @@ package com.java.qlsv.common;
 import com.java.qlsv.mock.DataStudent;
 import com.java.qlsv.model.Student;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Share {
@@ -51,7 +52,18 @@ public class Share {
         String email = scanner.nextLine();
         System.out.println("Nhap điểm sinh viên : ");
         Double mark = Double.parseDouble(scanner.nextLine());
-        Student std = new Student(autoIncreaseId(),code,name,address,email,mark);
+        Student std = new Student(autoIncreaseId(), code, name, address, email, mark);
         return std;
+    }
+
+    public static void displayListStudent(List<Student> listStd) {
+        System.out.println("===================================================================================================================== DSSV ===========================================================================================");
+        System.out.println("======================================================================================================================================================================================================================");
+        System.out.println("|   _id   |               CODE                   |                     NAME                  |               ADDRESS               |                       EMAIL                      |             MARK               | ");
+        listStd.forEach((Student std) -> {
+            System.out.println("======================================================================================================================================================================================================================");
+            System.out.println("|   " + std.get_id() + "     |             " + std.getCode() + "               |             " + std.getName() + "               |                " + std.getAddress() + "               |              " + std.getEmail() + "               |              " + std.getMark() + "               |");
+        });
+        System.out.println("======================================================================================================================================================================================================================");
     }
 }
